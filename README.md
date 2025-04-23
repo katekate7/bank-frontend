@@ -1,13 +1,54 @@
-# React + Vite
+# Next_CICDCD
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Deploy localy
+Install dependencies and build the app for production
+```
+npm install
+npm run build
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+If you want to start the project localy
+```
+npm run start
+```
 
-## Expanding the ESLint configuration
+## Deploy with Docker
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# bank-frontend
+Install dependencies and build the app for production
+```
+npm install
+npm run build
+```
+
+Build the image and run as container
+```
+docker build -t next_cicdcd .
+docker run --name next_cicdcd_container -p 3000:3000 next_cicdcd
+```
+
+## Deploy with Jenkins
+
+If not already done start an instance of jenkins_master
+```
+docker run --name jenkins -p <choose_a_port>:8080 jenkins/jenkins
+```
+
+Then build and start an instance of a jenkins_agent
+If your are on Windows, execute this command in Powershell or cmd
+```
+cd Jenkins-agent
+docker build -t jenkins-agent-with-docker-and-node .
+```
+
+To get the Jenkins master IP adress
+```
+docker inspect jenkins
+```
+
+Link the jenkins agent
+```
+docker run --init --name jenkins_agent_node -v /var/run/docker.sock:/var/run/docker.sock jenkins-agent-with-docker-and-node -url http://<Jenkins_master_IP_adress>:8080 <secret> <agent_name>
+```
+
+Want to try the entire CICD on your own repository and registry ?
