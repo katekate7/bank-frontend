@@ -38,7 +38,7 @@ Then build and start an instance of a jenkins_agent
 If your are on Windows, execute this command in Powershell or cmd
 ```
 cd Jenkins-agent
-docker build -t jenkins-agent-with-docker-and-node .
+docker build -t jenkins-agent-with-docker-and-react-bank .
 ```
 
 To get the Jenkins master IP adress
@@ -48,7 +48,7 @@ docker inspect jenkins
 
 Link the jenkins agent
 ```
-docker run --init --name jenkins_agent_node -v /var/run/docker.sock:/var/run/docker.sock jenkins-agent-with-docker-and-node -url http://<Jenkins_master_IP_adress>:8080 <secret> <agent_name>
+docker run --init --name jenkins_agent_react_bank -v /var/run/docker.sock:/var/run/docker.sock jenkins-agent-with-docker-and-react-bank -url http://172.17.0.2:8080 2f98b0f2bb6c7f1e418c93b3745a43d916f4cb2cee579ddded716a4668efc1c0 mybank-frontend
 ```
 
 Want to try the entire CICD on your own repository and registry ?
