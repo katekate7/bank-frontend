@@ -1,20 +1,24 @@
 import { useState } from 'react';
 import api from '../api/axios';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = ({ setAuthenticated }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate(); // ⬅️
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await api.post('/login', {
-        email: email,         
-        password: password,
+        email,
+        password,
       });
+
       setAuthenticated(true);
+      navigate('/user/expense/'); // ⬅️ Переходимо на витрати
     } catch (error) {
       setMessage('❌ Невірний логін або пароль');
     }
