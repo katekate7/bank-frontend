@@ -25,11 +25,7 @@ const Dashboard = ({ setAuthenticated }) => {
   return (
     <div className="dashboard">
       <h2>Dashboard</h2>
-      <button className="add-btn" onClick={() => setShowForm(true)}>➕ Add Expense</button>
-      {showForm && <AddExpenseForm onSave={addExpense} onCancel={() => setShowForm(false)} />}
-      {expenses.map((expense, i) => (
-        <ExpenseCard key={i} expense={expense} onDelete={() => deleteExpense(i)} />
-      ))}
+      <button className="add-btn" onClick={() => window.location.href = '/user/expense/new'}>➕ Add Expense</button>
       <button className="logout" onClick={handleLogout}>Log out</button>
     </div>
   );

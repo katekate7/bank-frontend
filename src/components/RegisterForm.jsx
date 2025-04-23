@@ -11,17 +11,24 @@ const RegisterForm = ({ setAuthenticated }) => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await api.post('/register', {
+      await api.post('/api/register', {
         email,
         password,
       });
-
-      setAuthenticated(true); // оновлюємо стан
-      navigate('/user/expense/');          // переходимо на Dashboard
+  
+      // ⬇️ вручну залогінити користувача
+      await api.post('/login', {
+        email,
+        password,
+      });
+  
+      setAuthenticated(true);
+      navigate('/user/expense/');
     } catch (err) {
       setMessage(err.response?.data?.error || '❌ Помилка реєстрації');
     }
   };
+  
 
   return (
     <form onSubmit={handleRegister}>

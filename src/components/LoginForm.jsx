@@ -45,7 +45,7 @@ const LoginForm = ({ setAuthenticated }) => {
         <button type="submit">LOGIN</button>
         <p className="error">{message}</p>
         <p className="register">
-          Not registered? <Link to="/register">Create an account</Link>
+          Not registered? <Link to="/api/register">Create an account</Link>
         </p>
       </form>
     </div>
