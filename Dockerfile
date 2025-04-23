@@ -2,5 +2,8 @@ FROM node
 RUN mkdir next
 COPY . var/next
 WORKDIR /var/next
-EXPOSE 3000
-CMD [ "npm", "run", "start" ]
+RUN npm install
+COPY . .
+RUN npm run build
+EXPOSE 4173
+CMD [ "npm", "run", "preview" ]
