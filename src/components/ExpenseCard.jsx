@@ -1,17 +1,16 @@
 // src/components/ExpenseCard.jsx
 const ExpenseCard = ({ expense, onDelete }) => {
-    return (
-      <div className="expense-card">
-        <strong>{expense.label}</strong> | {expense.category}
-        <p>{expense.date}</p>
-        <p>Amount: {expense.amount} €</p>
-        <div className="actions">
-          <button>✏️</button>
-          <button onClick={onDelete}>❌</button>
-        </div>
+  return (
+    <div className="expense-card">
+      <strong>{expense.label}</strong> | {expense.category}
+      <p>{expense.date}</p>
+      <p>Amount: {expense.amount} €</p>
+      <div className="actions">
+        <button>✏️</button>
+        <button onClick={onDelete}>❌</button>
       </div>
-    );
-  };
-  
-  export default ExpenseCard;
-  
+    </div>
+  );
+};
+
+export default ExpenseCard;

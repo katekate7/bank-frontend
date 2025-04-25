@@ -6,4 +6,13 @@ export default defineConfig({
   server: {
     historyApiFallback: true,
   },
+
+
+server: {
+  proxy: {
+    '/api': 'http://localhost:8000',
+    '/login': 'http://localhost:8000',
+    '/logout': 'http://localhost:8000',
+  },
+}
 });

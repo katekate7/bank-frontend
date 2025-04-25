@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -23,8 +26,10 @@ a:hover {
 }
 
 body {
+  background-color: #14213D !important;
   margin: 0;
   display: flex;
+  justify-content: center;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -66,3 +71,200 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+h2.text-center.mb-4 {
+  color: #FCA311;
+  font-family: "Montserrat";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+}
+
+.justify-content-center{
+  flex-direction: column;
+}
+
+.card.p-4.shadow{
+  border-radius: 20px;
+  background: #FFF;
+}
+
+input.form-control{
+border-radius: 20px;
+background: rgba(252, 163, 17, 0.25);
+border: none;
+color: rgba(0, 0, 0, 0.50);
+font-family: "Inter";
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+padding: 16px 0 16px 15px;
+}
+
+button.btn.btn-primary.w-100{
+  border-radius: 20px;
+background: #FCA311;
+border: none;
+color: #FFF;
+font-family: "Inter";
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+padding: 16px 0;
+}
+
+p.text-center.mt-3{
+  color: #000;
+font-family: "Inter";
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin-bottom: 0 !important;
+}
+p.text-center.mt-3 a{
+  color: #FCA311;
+  font-family: "Inter";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.form-control:focus{
+border-color: #FCA311 !important;
+box-shadow: 0 0 0 0.2rem rgba(252, 163, 17, 0.25) !important;
+}
+
+.dashboard-body{
+  background-color: white !important;
+    margin: 0;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: left; 
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    place-items: flex-start;
+
+}
+
+.dashboard{
+    margin: 1.5rem !important;
+}
+.dashboard-text{
+  color: #14213D;
+font-family: "Montserrat";
+font-size: 24px;
+font-style: normal;
+font-weight: 900;
+line-height: normal;
+}
+
+img.add-expense-icon{
+  width: 31px;
+  height: 32px;
+}
+
+.add-expense{
+  display: flex;
+align-items: center;
+flex-direction: row;
+}
+
+
+.button.add-btn{
+background-color: white !important;
+}
+@media (prefers-color-scheme: light) {
+  button {
+      background-color: none !important;
+  }
+}
+
+.add-btn{
+  background-color: white !important;
+  padding: 0 6px !important;
+}
+
+.logout{
+  border-radius: 6px;
+background: #14213D;
+color: #FFF;
+font-family: "Montserrat";
+font-size: 19px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+padding: 5px 16px;
+bottom: 0;
+position: absolute;
+right: 1rem;
+margin-bottom: 2rem;
+}
+
+
+.add-expense-page{
+  width: 100%;
+  max-width: 400px;
+  border-radius: 20px;
+  background: #FFF;
+}
+
+.h3-expense{
+  color: #FCA311;
+  font-family: "Montserrat";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.label-expense, .category-expense, .date-expense , .amount-expense{
+  color: #000;
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 7px;
+  }
+
+  .label-expense input, .category-expense select, .date-expense input, .amount-expense input{
+    margin: 0 0 0 1rem;
+    border-radius: 11px;
+    background: rgba(252, 163, 17, 0.25);
+    border: none;
+    padding: 2px 10px;
+    color: #6c757d;
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 7px;
+  }
+
+  .buttons-expense{
+    display: flex;
+    margin-top: 1rem;
+    justify-content: space-between;
+  }
+
+  .save, .cancel{
+    border-radius: 11px;
+    background: #FCA311;
+    padding: 6px 36px;
+    color: #FFF;
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }

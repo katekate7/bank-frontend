@@ -27,30 +27,42 @@ const LoginForm = ({ setAuthenticated }) => {
   
 
   return (
-    <div className="auth-wrapper">
-      <h2>Welcome to MyBank</h2>
-      <form onSubmit={handleLogin} className="auth-form">
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <h2 className="text-center mb-4">Welcome to MyBank</h2>
+    <div className="card p-4 shadow" style={{ width: '100%', maxWidth: '400px' }}>
+
+    <form onSubmit={handleLogin}>
+      <div className="mb-3">
         <input
           type="email"
-          placeholder="email"
+          className="form-control"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+      </div>
+      <div className="mb-3">
         <input
           type="password"
-          placeholder="password"
+          className="form-control"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">LOGIN</button>
-        <p className="error">{message}</p>
-        <p className="register">
-          Not registered? <Link to="/api/register">Create an account</Link>
-        </p>
-      </form>
-    </div>
+      </div>
+      <button type="submit" className="btn btn-primary w-100">
+        LOGIN
+      </button>
+      {message && <p className="text-danger text-center mt-2">{message}</p>}
+      <p className="text-center mt-3">
+        Not registered? <Link to="/api/register">Create an account</Link>
+      </p>
+    </form>
+  </div>
+</div>
+
   );
 };
 
