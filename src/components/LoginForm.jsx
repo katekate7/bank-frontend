@@ -16,13 +16,15 @@ const LoginForm = ({ setAuthenticated }) => {
         email,
         password,
       });
-
+  
+      localStorage.setItem('authenticated', 'true');
       setAuthenticated(true);
-      navigate('/user/expense/'); // ⬅️ Переходимо на витрати
+      navigate('/user/expense/');
     } catch (error) {
       setMessage('❌ Невірний логін або пароль');
     }
   };
+  
 
   return (
     <div className="auth-wrapper">

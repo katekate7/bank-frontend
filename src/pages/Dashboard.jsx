@@ -8,10 +8,10 @@ const Dashboard = ({ setAuthenticated }) => {
   const [expenses, setExpenses] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
-  const handleLogout = async () => {
-    await api.post('/logout');
+  const handleLogout = () => {
+    localStorage.removeItem('authenticated');
     setAuthenticated(false);
-  };
+  };  
 
   const addExpense = (expense) => {
     setExpenses([...expenses, expense]);

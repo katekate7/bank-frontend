@@ -10,7 +10,7 @@ const AddExpensePage = () => {
       await api.post('/user/expense/new', expense);
       navigate('/user/expense/');
     } catch (error) {
-      console.error('Помилка при збереженні витрати:', error);
+      console.error('Error with saving:', error);
     }
   };
 

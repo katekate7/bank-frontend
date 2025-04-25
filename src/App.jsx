@@ -11,25 +11,18 @@ import AddExpensePage from './pages/AddExpensePage';
 import api from './api/axios';
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    api.get('/user/expense/')
-      .then(() => setAuthenticated(true))
-      .catch(() => setAuthenticated(false));
-  }, []);
+  const [authenticated, setAuthenticated] = useState(
+    localStorage.getItem('authenticated') === 'true'
+  );
 
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<LoginForm setAuthenticated={setAuthenticated} />} />
         <Route path="/api/register" element={<RegisterForm setAuthenticated={setAuthenticated} />} />
-        <Route path="/" element={authenticated ? <Dashboard /> : <Navigate to="/login" />} />
+        <Route path="/" element={<LoginForm setAuthenticated={setAuthenticated} />} />
         <Route path="/user/expense/" element={authenticated ? <Dashboard /> : <Navigate to="/login" />} />
         <Route path="/user/expense/new" element={authenticated ? <AddExpensePage /> : <Navigate to="/login" />} />
-
-        {/* <Route path="/:id/edit" element={authenticated ? <EditExpenseFormPage /> : <Navigate to="/login" />} />
-        <Route path="/account/edit" element={authenticated ? <EditUserEmailPage /> : <Navigate to="/login" />} /> */}
         <Route path="*" element={<Navigate to={authenticated ? "/" : "/login"} />} />
       </Routes>
     </Router>
