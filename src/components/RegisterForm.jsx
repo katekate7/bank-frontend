@@ -11,10 +11,16 @@ const RegisterForm = ({ setAuthenticated }) => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await api.post('/api/register', {
-        email,
-        password,
-      });
+      await api.post(
+        '/register',
+        { email, password },
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        }
+      );
+      
+      
   
       // ⬇️ вручну залогінити користувача
       await api.post('/login', {
@@ -31,13 +37,37 @@ const RegisterForm = ({ setAuthenticated }) => {
   
 
   return (
-    <form onSubmit={handleRegister}>
-      <h2>Створити акаунт</h2>
-      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      <input type="password" placeholder="Пароль" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      <button type="submit">Зареєструватися</button>
-      <p>{message}</p>
-    </form>
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+        <h2 className="text-center mb-4">Create your account </h2>
+          <div className="card p-4 shadow" style={{ width: '100%', maxWidth: '400px' }}>
+
+            <form onSubmit={handleRegister}>
+            <div className="mb-3">
+              <input
+              type="email"
+              className="form-control"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />            
+            </div>
+            <div className="mb-3">
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+            />            
+          </div>
+          <button type="submit" className="btn btn-primary w-100">
+            REGISTER
+          </button>
+            </form>
+            </div>
+            </div>
   );
 };
 

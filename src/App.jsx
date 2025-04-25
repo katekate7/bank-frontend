@@ -19,7 +19,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<LoginForm setAuthenticated={setAuthenticated} />} />
-        <Route path="/api/register" element={<RegisterForm setAuthenticated={setAuthenticated} />} />
+        <Route path="/register" element={<RegisterForm setAuthenticated={setAuthenticated} />} />
         <Route path="/" element={<LoginForm setAuthenticated={setAuthenticated} />} />
         <Route path="/user/expense/" element={authenticated ? <Dashboard /> : <Navigate to="/login" />} />
         <Route path="/user/expense/new" element={authenticated ? <AddExpensePage /> : <Navigate to="/login" />} />

@@ -12,10 +12,14 @@ const LoginForm = ({ setAuthenticated }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await api.post('/login', {
-        email,
-        password,
-      });
+      await api.post(
+        '/login',
+        { email, password },
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true, // ⬅️ важливо для сесії!
+        }
+      );      
   
       localStorage.setItem('authenticated', 'true');
       setAuthenticated(true);
@@ -57,7 +61,7 @@ const LoginForm = ({ setAuthenticated }) => {
       </button>
       {message && <p className="text-danger text-center mt-2">{message}</p>}
       <p className="text-center mt-3">
-        Not registered? <Link to="/api/register">Create an account</Link>
+        Not registered? <Link to="/register">Create an account</Link>
       </p>
     </form>
   </div>

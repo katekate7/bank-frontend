@@ -27,7 +27,7 @@ const Dashboard = ({ setAuthenticated }) => {
     <body className="dashboard-body">
     <div id="dashboard-container">
       <div className="dashboard">
-        <h2 class="dashboard-text">Dashboard</h2>
+        <h2 className="dashboard-text">Dashboard</h2>
         <div className="add-expense">
         <img
         src={plusIcon}

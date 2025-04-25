@@ -13,30 +13,6 @@ const AddExpenseForm = ({ onSave, onCancel }) => {
   };
 
   return (
-    // <form className="card p-4 shadow" onSubmit={handleSubmit}>
-    //   <div class="h3-expense">Add Expense</div>
-    //   <div class="label-expense">Label
-    //     <input type="text" placeholder="dress" value={label} onChange={(e) => setLabel(e.target.value)} required />
-    //   </div>
-    //   <div class="category-expense">Category
-    //     <select value={category} onChange={(e) => setCategory(e.target.value)}>
-    //       <option>Food</option>
-    //       <option>Transport</option>
-    //       <option>Shopping</option>
-    //       <option>Other</option>
-    //     </select>
-    //   </div>
-    //   <div class="date-expense">Date
-    //     <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
-    //   </div>
-    //   <div class="amount-expense">Amount
-    //     <input type="number" placeholder="200" value={amount} onChange={(e) => setAmount(e.target.value)} required /> €
-    //   </div>
-    //   <div class="buttons-expense">
-    //     <button class="save" type="submit">Save</button>
-    //     <button class="cancel" type="button" onClick={onCancel}>Cancel</button>
-    //   </div>
-    // </form>
     <form className="card p-4 shadow" onSubmit={handleSubmit}>
     <div className="h3-expense">Add Expense</div>
 
