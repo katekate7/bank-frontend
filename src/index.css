@@ -233,16 +233,16 @@ margin-bottom: 2rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-bottom: 7px;
+  margin-bottom: 12px;
   }
 
-  .label-expense input, .category-expense select, .date-expense input, .amount-expense input{
+  .containes-input input, .containes-input select, .containes-input input, .containes-input input{
     margin: 0 0 0 1rem;
     border-radius: 11px;
     background: rgba(252, 163, 17, 0.25);
     border: none;
     padding: 2px 10px;
-    color: #6c757d;
+    color: black;
     font-family: "Montserrat";
     font-size: 16px;
     font-style: normal;
@@ -260,7 +260,7 @@ margin-bottom: 2rem;
   .save, .cancel{
     border-radius: 11px;
     background: #FCA311;
-    padding: 6px 36px;
+    padding: 6px 44px;
     color: #FFF;
     font-family: "Montserrat";
     font-size: 16px;
@@ -268,3 +268,11 @@ margin-bottom: 2rem;
     font-weight: 600;
     line-height: normal;
   }
+
+  .containes-together {
+    display: flex;
+}
+.containes-input {
+  display: flex;
+  flex-direction: column;
+}
