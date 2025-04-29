@@ -2,7 +2,7 @@
 const ExpenseCard = ({ expense, onDelete }) => {
   return (
     <div className="expense-card">
-      <strong>{expense.label}</strong> | {expense.category}
+      <strong>{expense.label}</strong> | {expense.category.name}
       <p>{expense.date}</p>
       <p>Amount: {expense.amount} €</p>
       <div className="actions">
