@@ -12,7 +12,7 @@ const AddExpenseForm = ({ onSave, onCancel }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await api.get('/categories');
+        const response = await api.get('/api/categories');
         setCategories(response.data);
         setCategory(response.data[0] || ''); // перша категорія як дефолтна
       } catch (error) {
