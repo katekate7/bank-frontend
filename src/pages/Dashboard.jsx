@@ -22,7 +22,16 @@ const Dashboard = ({ setAuthenticated }) => {
   const handleLogout = () => {
     localStorage.removeItem('authenticated');
     setAuthenticated(false);
-  };  
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/api/expense/${id}`, { withCredentials: true });
+      setExpenses(expenses.filter(e => e.id !== id));
+    } catch (err) {
+      console.error('Error deleting expense:', err);
+    }
+  };
 
   return (
     <div className="dashboard-body">
@@ -48,7 +57,11 @@ const Dashboard = ({ setAuthenticated }) => {
         <div className="expense-list">
           {expenses.length > 0 ? (
             expenses.map((expense) => (
-              <ExpenseCard key={expense.id} expense={expense} />
+              <ExpenseCard
+                key={expense.id}
+                expense={expense}
+                onDelete={() => handleDelete(expense.id)}
+              />
             ))
           ) : (
             <p>No expenses yet.</p>

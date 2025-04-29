@@ -6,7 +6,7 @@ const ExpenseCard = ({ expense, onDelete }) => {
       <p>{expense.date}</p>
       <p>Amount: {expense.amount} €</p>
       <div className="actions">
-        <button>✏️</button>
+        <button onClick={() => window.location.href = `/user/expense/${expense.id}/edit`}>✏️</button>
         <button onClick={onDelete}>❌</button>
       </div>
     </div>
