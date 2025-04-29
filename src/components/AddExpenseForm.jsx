@@ -1,16 +1,32 @@
 // src/components/AddExpenseForm.jsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import api from '../api/axios';  // ← переконайся, що з цим файлом усе ок
 
 const AddExpenseForm = ({ onSave, onCancel }) => {
-  const [label, setLabel] = useState('');
-  const [category, setCategory] = useState('Food');
-  const [date, setDate] = useState('');
-  const [amount, setAmount] = useState('');
+  const [label, setLabel]       = useState('');
+  const [category, setCategory] = useState('');
+  const [categories, setCategories] = useState([]);
+  const [date, setDate]         = useState('');
+  const [amount, setAmount]     = useState('');
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    api.get('/api/categories')
+      .then(({ data }) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setCategories(data);
+          setCategory(data[0]);  // перша категорія за замовчуванням
+        } else {
+          console.error('Категорії не повернуто або порожні:', data);
+        }
+      })
+      .catch(err => console.error('Помилка завантаження категорій:', err));
+  }, []);
+
+  const handleSubmit = e => {
     e.preventDefault();
     onSave({ label, category, date, amount });
   };
+
 
   return (
     <form className="card p-4 shadow" onSubmit={handleSubmit}>
@@ -26,24 +42,54 @@ const AddExpenseForm = ({ onSave, onCancel }) => {
 
     </div>
     <div className="containes-input">   
+          <input
+            type="text"
+            placeholder="e.g. Dress"
+            value={label}
+            onChange={e => setLabel(e.target.value)}
+            required
+          />
 
-      <input type="text" placeholder="dress" value={label} onChange={(e) => setLabel(e.target.value)} required />
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
-        <option>Food</option>
-        <option>Transport</option>
-        <option>Shopping</option>
-        <option>Other</option>
-      </select>
-      <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
-      <input type="number" placeholder="200" value={amount} onChange={(e) => setAmount(e.target.value)} required/> 
-    </div>
-</div>
+          {categories.length > 0 ? (
+            <select
+              value={category}
+              onChange={e => setCategory(e.target.value)}
+              required
+            >
+              {categories.map((cat, idx) => (
+                <option key={idx} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <select disabled>
+              <option>Loading...</option>
+            </select>
+          )}
 
-    <div className="buttons-expense">
-      <button className="save" type="submit">Save</button>
-      <button className="cancel" type="button" onClick={onCancel}>Cancel</button>
-    </div>
-  </form>
+          <input
+            type="date"
+            value={date}
+            onChange={e => setDate(e.target.value)}
+            required
+          />
+
+          <input
+            type="number"
+            placeholder="200"
+            value={amount}
+            onChange={e => setAmount(e.target.value)}
+            required
+          /> 
+        </div>
+      </div>
+
+      <div className="buttons-expense">
+        <button className="save" type="submit">Save</button>
+        <button className="cancel" type="button" onClick={onCancel}>Cancel</button>
+      </div>
+    </form>
   );
 };
 

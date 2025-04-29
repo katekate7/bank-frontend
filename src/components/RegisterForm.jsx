@@ -19,10 +19,7 @@ const RegisterForm = ({ setAuthenticated }) => {
           withCredentials: true,
         }
       );
-      
-      
-  
-      // ⬇️ вручну залогінити користувача
+
       await api.post('/login', {
         email,
         password,
