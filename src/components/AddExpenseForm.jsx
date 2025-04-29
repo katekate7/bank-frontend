@@ -1,28 +1,29 @@
 // src/components/AddExpenseForm.jsx
-import { useState, useEffect } from 'react';
-import api from '../api/axios';  // ← переконайся, що з цим файлом усе ок
+import { useEffect, useState } from 'react';
+import api from '../api/axios';
 
 const AddExpenseForm = ({ onSave, onCancel }) => {
-  const [label, setLabel]       = useState('');
+  const [label, setLabel] = useState('');
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
-  const [date, setDate]         = useState('');
-  const [amount, setAmount]     = useState('');
+  const [date, setDate] = useState('');
+  const [amount, setAmount] = useState('');
 
   useEffect(() => {
-    api.get('/api/categories')
-      .then(({ data }) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setCategories(data);
-          setCategory(data[0]);  // перша категорія за замовчуванням
-        } else {
-          console.error('Категорії не повернуто або порожні:', data);
-        }
-      })
-      .catch(err => console.error('Помилка завантаження категорій:', err));
+    const fetchCategories = async () => {
+      try {
+        const response = await api.get('/categories');
+        setCategories(response.data);
+        setCategory(response.data[0] || ''); // перша категорія як дефолтна
+      } catch (error) {
+        console.error('Не вдалося завантажити категорії:', error);
+      }
+    };
+
+    fetchCategories();
   }, []);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     onSave({ label, category, date, amount });
   };
