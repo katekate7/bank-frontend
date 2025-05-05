@@ -25,6 +25,7 @@ const RegisterForm = ({ setAuthenticated }) => {
         password,
       });
   
+      localStorage.setItem('authenticated', 'true'); 
       setAuthenticated(true);
       navigate('/user/expense/');
     } catch (err) {

@@ -20,13 +20,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginForm setAuthenticated={setAuthenticated} />} />
+        {/* <Route path="/login" element={<LoginForm setAuthenticated={setAuthenticated} />} /> */}
         <Route path="/register" element={<RegisterForm setAuthenticated={setAuthenticated} />} />
         <Route path="/" element={<LoginForm setAuthenticated={setAuthenticated} />} />
-        <Route path="/user/expense/" element={authenticated ? <Dashboard /> : <Navigate to="/login" />} />
-        <Route path="/user/expense/new" element={authenticated ? <AddExpensePage /> : <Navigate to="/login" />} />
-        <Route path="/user/expense/:id/edit" element={authenticated ? <EditExpensePage /> : <Navigate to="/login" />} />
-        <Route path="*" element={<Navigate to={authenticated ? "/" : "/login"} />} />
+        <Route path="/user/expense/" element={authenticated ? <Dashboard setAuthenticated={setAuthenticated} /> : <Navigate to="/" />}/>        <Route path="/user/expense/new" element={authenticated ? <AddExpensePage /> : <Navigate to="/" />} />
+        <Route path="/user/expense/:id/edit" element={authenticated ? <EditExpensePage setAuthenticated={setAuthenticated} /> : <Navigate to="/" />}/>        <Route path="*" element={<Navigate to={authenticated ? "/" : "/"} />} />
       </Routes>
     </Router>
   );
