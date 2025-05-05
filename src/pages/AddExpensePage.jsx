@@ -1,3 +1,4 @@
+// src/pages/AddExpensePage.jsx
 import AddExpenseForm from '../components/AddExpenseForm';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/axios';
@@ -12,7 +13,6 @@ const AddExpensePage = () => {
     } catch (error) {
       console.error('Error with saving:', error.response?.data?.error || error.message);
     }
-
   };
 
   return (
@@ -20,7 +20,6 @@ const AddExpensePage = () => {
       <AddExpenseForm onSave={handleSave} onCancel={() => navigate('/user/expense/')} />
     </div>
   );
-  
 };
 
 export default AddExpensePage;

@@ -3,7 +3,12 @@ const ExpenseCard = ({ expense, onDelete }) => {
   return (
     <div className="expense-card">
       <strong>{expense.label}</strong> | {expense.category.name}
-      <p>{expense.date}</p>
+      <p>{new Date(expense.date).toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      })}</p>
+
       <p>Amount: {expense.amount} €</p>
       <div className="actions">
         <button onClick={() => window.location.href = `/user/expense/${expense.id}/edit`}>✏️</button>

@@ -2,26 +2,41 @@
 import { useEffect, useState } from 'react';
 import api from '../api/axios';
 
-const AddExpenseForm = ({ onSave, onCancel }) => {
+const AddExpenseForm = ({ onSave, onCancel, initialData = {} }) => {
   const [label, setLabel] = useState('');
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
   const [date, setDate] = useState('');
   const [amount, setAmount] = useState('');
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await api.get('/api/categories');
-        setCategories(response.data);
-        setCategory(response.data[0] || ''); // перша категорія як дефолтна
-      } catch (error) {
-        console.error('Не вдалося завантажити категорії:', error);
+    useEffect(() => {
+      const fetchCategories = async () => {
+        try {
+          const response = await api.get('/api/categories');
+          setCategories(response.data);
+        } catch (error) {
+          console.error('Не вдалося завантажити категорії:', error);
+        }
+      };
+    
+      fetchCategories();
+    }, []);
+    
+    const isEdit = !!initialData.label;
+    // Коли завантажено і initialData, і categories
+    useEffect(() => {
+      if (isEdit && categories.length > 0) {
+        setLabel(initialData.label || '');
+        setCategory(initialData.category || categories[0]);
+        setDate(initialData.date ? initialData.date.slice(0, 10) : '');
+        setAmount(initialData.amount || '');
       }
-    };
-
-    fetchCategories();
-  }, []);
+    
+      if (!isEdit && categories.length > 0) {
+        setCategory(categories[0]); // для нового запису
+      }
+    }, [initialData, categories, isEdit]);
+    
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,7 +46,10 @@ const AddExpenseForm = ({ onSave, onCancel }) => {
 
   return (
     <form className="card p-4 shadow" onSubmit={handleSubmit}>
-    <div className="h3-expense">Add Expense</div>
+    <div className="h3-expense">
+      {initialData && initialData.label ? 'Change Expense' : 'Add Expense'}
+    </div>
+
 
 <div className="containes-together">
     <div className="containes-text">
@@ -53,16 +71,16 @@ const AddExpenseForm = ({ onSave, onCancel }) => {
 
           {categories.length > 0 ? (
             <select
-              value={category}
-              onChange={e => setCategory(e.target.value)}
-              required
-            >
-              {categories.map((cat, idx) => (
-                <option key={idx} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </select>
+                value={category}
+                onChange={e => setCategory(e.target.value)}
+                required
+              >
+                {categories.map((cat, idx) => (
+                  <option key={idx} value={typeof cat === 'string' ? cat : cat.name}>
+                    {typeof cat === 'string' ? cat : cat.name}
+                  </option>
+                ))}
+              </select>
           ) : (
             <select disabled>
               <option>Loading...</option>

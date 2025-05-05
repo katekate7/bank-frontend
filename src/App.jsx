@@ -6,6 +6,8 @@ import RegisterForm from './components/RegisterForm';
 import Dashboard from './pages/Dashboard';
 import AddExpenseFormPage from './components/AddExpenseForm';
 import AddExpensePage from './pages/AddExpensePage';
+import EditExpensePage from './pages/EditExpensePage';
+
 // import EditExpenseFormPage from './pages/EditExpenseFormPage';
 // import EditUserEmailPage from './pages/EditUserEmailPage';
 import api from './api/axios';
@@ -23,6 +25,7 @@ function App() {
         <Route path="/" element={<LoginForm setAuthenticated={setAuthenticated} />} />
         <Route path="/user/expense/" element={authenticated ? <Dashboard /> : <Navigate to="/login" />} />
         <Route path="/user/expense/new" element={authenticated ? <AddExpensePage /> : <Navigate to="/login" />} />
+        <Route path="/user/expense/:id/edit" element={authenticated ? <EditExpensePage /> : <Navigate to="/login" />} />
         <Route path="*" element={<Navigate to={authenticated ? "/" : "/login"} />} />
       </Routes>
     </Router>
