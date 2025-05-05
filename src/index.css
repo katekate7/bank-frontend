@@ -90,11 +90,11 @@ background: rgba(252, 163, 17, 0.25);
 border: none;
 color: rgba(0, 0, 0, 0.50);
 font-family: "Inter";
-font-size: 12px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
-padding: 16px 0 16px 15px;
+padding-top: 16px;
+padding-bottom: 16px;
 }
 
 button.btn.btn-primary.w-100{
@@ -196,7 +196,7 @@ margin-bottom: 2rem;
 
 
 
-.h3-expense{
+.h3-expense, .main-text{
   color: #FCA311;
   font-family: "Montserrat";
   font-size: 24px;
@@ -275,4 +275,13 @@ margin-bottom: 2rem;
 
 .actions button{
 background-color: transparent !important;
+}
+
+.form-control:focus{
+  border-color: #FCA311 !important;
+  box-shadow: 0 0 0 0.2rem rgba(252, 163, 17, 0.25) !important;
+}
+
+button:hover, .form-control:focus {
+border-color: #FCA311 !important;
 }

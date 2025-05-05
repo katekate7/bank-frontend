@@ -45,7 +45,7 @@ const AddExpenseForm = ({ onSave, onCancel, initialData = {} }) => {
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="w-100" style={{ maxWidth: '600px' }}>
         <form className="card p-4 shadow" onSubmit={handleSubmit}>
-          <h3 className="mb-4 text-center">
+          <h3 className="main-text">
             {initialData && initialData.label ? 'Change Expense' : 'Add Expense'}
           </h3>
 
