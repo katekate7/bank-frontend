@@ -29,7 +29,7 @@ const RegisterForm = ({ setAuthenticated }) => {
       setAuthenticated(true);
       navigate('/user/expense/');
     } catch (err) {
-      setMessage(err.response?.data?.error || '❌ Помилка реєстрації');
+      setMessage(err.response?.data?.error || '❌ Error occurred during registration');
     }
   };
   

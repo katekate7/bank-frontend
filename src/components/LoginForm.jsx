@@ -7,7 +7,7 @@ const LoginForm = ({ setAuthenticated }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const navigate = useNavigate(); // ⬅️
+  const navigate = useNavigate(); 
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ const LoginForm = ({ setAuthenticated }) => {
         { email, password },
         {
           headers: { 'Content-Type': 'application/json' },
-          withCredentials: true, // ⬅️ важливо для сесії!
+          withCredentials: true, 
         }
       );      
   
@@ -25,7 +25,7 @@ const LoginForm = ({ setAuthenticated }) => {
       setAuthenticated(true);
       navigate('/user/expense/');
     } catch (error) {
-      setMessage('❌ Невірний логін або пароль');
+      setMessage('❌ Wrong email or password');
     }
   };
   
