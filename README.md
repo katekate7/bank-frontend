@@ -1,6 +1,3 @@
-# Next_CICDCD
-
-
 ## Deploy localy
 Install dependencies and build the app for production
 ```
@@ -23,8 +20,8 @@ npm run build
 
 Build the image and run as container
 ```
-docker build -t next_cicdcd .
-docker run --name next_cicdcd_container -p 3000:3000 next_cicdcd
+docker build -t bank_front .
+docker run --name bank_front_container -p 3000:3000 bank_front
 ```
 
 ## Deploy with Jenkins
@@ -38,7 +35,7 @@ Then build and start an instance of a jenkins_agent
 If your are on Windows, execute this command in Powershell or cmd
 ```
 cd Jenkins-agent
-docker build -t jenkins-agent-with-docker-and-react-bank .
+docker build -t jenkins-agent-bank_front .
 ```
 
 To get the Jenkins master IP adress
@@ -49,6 +46,4 @@ docker inspect jenkins
 Link the jenkins agent
 ```
 docker run --init --name jenkins_agent_react_bank -v /var/run/docker.sock:/var/run/docker.sock jenkins-agent-with-docker-and-react-bank -url http://172.17.0.2:8080 2f98b0f2bb6c7f1e418c93b3745a43d916f4cb2cee579ddded716a4668efc1c0 mybank-frontend
-```
-
-Want to try the entire CICD on your own repository and registry ?
+``
