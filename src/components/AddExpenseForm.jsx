@@ -14,7 +14,7 @@ const AddExpenseForm = ({ onSave, onCancel, initialData = {} }) => {
         const response = await api.get('/api/categories');
         setCategories(response.data);
       } catch (error) {
-        console.error('Не вдалося завантажити категорії:', error);
+        console.error('Error', error);
       }
     };
 
